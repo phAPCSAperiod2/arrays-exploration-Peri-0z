@@ -1,26 +1,27 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class App {
 
     // variable to keep track of current index in the list
     // --- TO DO: why is this static? ---
+    // This is static because it needs to be accessed from the static main method and potentially other static methods.
     private static int currentIndex = 0;
 
     public static void main(String[] args) throws Exception {
         // create a list of top 5 things
         // --- TO DO: Change to your own list ---
-        String[] top5 = {
-            "1. Coding",
-            "2. Music",
-            "3. Movies",
-            "4. Sports",
-            "5. Travel"
+        String[] top5 = { // Top 5 favorite Sonic Characters
+            "1. Miles 'Tails' Prower",
+            "2. Tangle the Lemur",
+            "3. Whisper the Wolf",
+            "4. Jet the Hawk",
+            "5. Vector the Crocodile"
         };
 
          // A JFrame is a window where we can design our UI
-        JFrame frame = new JFrame("My Top 5 List");
+        JFrame frame = new JFrame("My Top 5 Favorite Sonic Characters List");
         frame.setSize(500, 500);
         frame.setLayout(null);
 
@@ -28,6 +29,8 @@ public class App {
         JButton nextButton = new JButton("Next");
         JLabel outputLabel = new JLabel();
         // --- TO DO: create a back button, format, and add it to the frame ---
+        JButton backButton = new JButton("Back");;
+        JLabel outputLabelBack = new JLabel();
 
         // place and size for components
         // setBounds(x position, y position, width, height)
@@ -36,12 +39,21 @@ public class App {
         outputLabel.setFont(new Font("Arial", Font.PLAIN, 32));
         outputLabel.setForeground(Color.BLUE);
 
+        // place
+        backButton.setBounds(250, 200, 100, 50);
+        outputLabelBack.setBounds(100,100,200,50);
+        outputLabelBack.setFont(new Font("Arial", Font.PLAIN, 32));
+        outputLabelBack.setForeground(Color.BLUE);
+
         // the output label will display the first item in the list initially
         outputLabel.setText( top5[currentIndex] );
+        // need something that takes currentindex and subtracts 1
 
         // add components to JFrame f
         frame.add(outputLabel);
         frame.add(nextButton);
+        frame.add(outputLabelBack);
+        frame.add(backButton);
 
         // add event listener for button click
         nextButton.addActionListener(new ActionListener() {
@@ -52,6 +64,11 @@ public class App {
 
         // --- TO DO: add event listener for back button ---
         // --- TO DO: create a getPreviousIndex function, see below ---
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentIndex = getPreviousIndex(currentIndex, top5.length);
+                outputLabel.setText(top5[currentIndex]);
+            }    });
 
 
         // make the frame visible
@@ -80,6 +97,12 @@ public class App {
      * @param listLength
      * @return previous index
      */
-    
+        public static int getPreviousIndex(int currentIndex, int listLength) {
+            if (currentIndex == 0) {
+                return listLength - 1; // wrap around to the end
+            } else {
+                return currentIndex - 1; // move to the previous index
+        }
+    }
 }
 
