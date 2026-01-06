@@ -13,11 +13,11 @@ public class App {
         // create a list of top 5 things
         // --- TO DO: Change to your own list ---
         String[] top5 = { // Top 5 favorite Sonic Characters
-            "1. Miles 'Tails' Prower",
-            "2. Tangle the Lemur",
-            "3. Whisper the Wolf",
-            "4. Jet the Hawk",
-            "5. Vector the Crocodile"
+            "1. Tails",
+            "2. Tangle",
+            "3. Whisper",
+            "4. Jet",
+            "5. Vector"
         };
 
          // A JFrame is a window where we can design our UI
